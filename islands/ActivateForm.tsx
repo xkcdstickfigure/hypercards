@@ -75,7 +75,10 @@ export default ({ id }: JSX.HTMLAttributes) => {
         </Field>
       )}
 
-      <Field label="Phone">
+      <Field
+        label="Phone"
+        note="This will be used to help you if you get locked out"
+      >
         <div class="w-full h-12 border(2 gray-200) rounded-lg flex">
           <div class="flex flex-col justify-center text-gray-600 border-r-2 px-2">
             +44
@@ -84,7 +87,10 @@ export default ({ id }: JSX.HTMLAttributes) => {
         </div>
       </Field>
 
-      <Field label="Pin (6 Digits)">
+      <Field
+        label="Pin (6 Digits)"
+        note="You'll need this to change what the card does"
+      >
         <input
           ref={pinRef}
           placeholder="••••••"
@@ -109,9 +115,14 @@ export default ({ id }: JSX.HTMLAttributes) => {
   );
 };
 
-const Field = ({ label, children }: JSX.HTMLAttributes) => (
+const Field = ({ label, children, note }: {
+  label: string;
+  children: JSX.Element;
+  note?: string;
+}) => (
   <div>
-    <p class="text-gray-800 font-semibold text-sm">{label}</p>
+    <p class="text-gray-800 font-semibold text-sm mb-0.5">{label}</p>
     {children}
+    {note && <p class="text-xs text-gray-600 mt-0.5">{note}</p>}
   </div>
 );
