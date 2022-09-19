@@ -19,3 +19,16 @@ export const CardGet = async (id: string): Promise<Card | null> => {
     [id],
   )).rows[0] || null;
 };
+
+export const CardActivate = async (
+  id: string,
+  platform: string,
+  value: string | null,
+  phone: string,
+  pin: string,
+) => {
+  await client.queryObject(
+    "update card set activated_at=now(), platform=$2, value=$3, phone=$4, pin=$5 where id=$1",
+    [id, platform, value, phone, pin],
+  );
+};

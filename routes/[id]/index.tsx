@@ -1,9 +1,9 @@
 import { HandlerContext, PageProps } from "$fresh/server.ts";
-import { Page } from "../components/Page.tsx";
-import { HCard } from "../components/HCard.tsx";
-import ActivateForm from "../islands/ActivateForm.tsx";
-import { Card, CardGet } from "../database.ts";
-import { platforms } from "../platforms.ts";
+import { Page } from "../../components/Page.tsx";
+import { HCard } from "../../components/HCard.tsx";
+import ActivateForm from "../../islands/ActivateForm.tsx";
+import { Card, CardGet } from "../../database.ts";
+import { platforms } from "../../platforms.ts";
 
 export const handler = async (
   _req: Request,
@@ -28,6 +28,6 @@ export const handler = async (
 export default ({ data: card }: PageProps<Card>) => (
   <Page title="Activate Hypercard">
     <HCard>{card.code}</HCard>
-    <ActivateForm />
+    <ActivateForm id={card.id} />
   </Page>
 );

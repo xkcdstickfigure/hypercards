@@ -5,5 +5,5 @@ create table card (
     platform       text,
     value          text,
     phone          text,
-    pin            integer
+    pin            text
 );
