@@ -1,6 +1,13 @@
 import { HandlerContext, Handlers } from "$fresh/server.ts";
-import { CardActivate, CardGet } from "../../database.ts";
+import {
+  CardActivate,
+  CardGet,
+  CardUse,
+  ClientCreate,
+  ClientGet,
+} from "../../database.ts";
 import { platforms } from "../../platforms.ts";
+import { getCookies } from "std/http/cookie.ts";
 
 interface Body {
   platform?: string;
@@ -45,7 +52,30 @@ export const handler: Handlers = {
         "44" + body.phone,
         body.pin,
       );
-      return new Response();
+
+      // client
+      const token = getCookies(req.headers).hctoken;
+      const address = (ctx.remoteAddr as Deno.NetAddr).hostname;
+      let client = await ClientGet(token);
+      if (!client) {
+        client = await ClientCreate(
+          address,
+          req.headers.get("user-agent"),
+        );
+      }
+      await CardUse(card.id, client.id, true);
+
+      // set cookie
+      const cookie = [`hctoken=${client.token}`];
+      cookie.push(`Max-Age=${365 * 24 * 60 * 60}`);
+      if (Deno.env.get("DENO_ENV") === "production") cookie.push("Secure");
+
+      // response
+      return new Response(null, {
+        headers: {
+          "set-cookie": cookie.join("; "),
+        },
+      });
     } else {
       return new Response(null, { status: 400 });
     }
