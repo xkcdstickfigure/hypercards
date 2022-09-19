@@ -50,6 +50,7 @@ export const platforms: { [key: string]: Platform } = {
     name: "Custom URL",
     value: "Link",
     placeholder: "https://youtu.be/dQw4w9WgXcQ",
-    url: ({ value }) => value || "",
+    url: ({ value }) =>
+      value && value.includes("://") ? value : "https://" + value,
   },
 };
