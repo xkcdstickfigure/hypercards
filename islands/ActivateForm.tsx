@@ -70,6 +70,10 @@ export default ({ id }: JSX.HTMLAttributes) => {
           <input
             ref={valueRef}
             placeholder={platforms[platform].placeholder}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             class="w-full h-12 border(2 gray-200) rounded-lg px-2"
           />
         </Field>
