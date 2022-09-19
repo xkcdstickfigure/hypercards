@@ -66,7 +66,7 @@ export default ({ id }: JSX.HTMLAttributes) => {
       </Field>
 
       {platforms[platform].value && (
-        <Field label={platforms[platform].value}>
+        <Field label={platforms[platform].value || ""}>
           <input
             ref={valueRef}
             placeholder={platforms[platform].placeholder}
