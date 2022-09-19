@@ -22,6 +22,14 @@ export interface Client {
   user_agent: string | null;
 }
 
+export interface CardClient {
+  card_id: string;
+  client_id: string;
+  unlocked_at: Date | null;
+  first_use: Date;
+  last_use: Date;
+}
+
 export const CardGet = async (id: string): Promise<Card | null> =>
   (await db.queryObject<Card>(
     "select id, code, activated_at, platform, value, phone, pin from card where id=$1",
@@ -80,3 +88,12 @@ export const CardList = async (client_id: string): Promise<Card[]> =>
     "select id, code, activated_at, platform, value, phone, pin, unlocked_at from card_client join card on card.id=card_id where client_id=$1 order by last_use desc",
     [client_id],
   )).rows;
+
+export const CardClientGet = async (
+  card_id: string,
+  client_id: string,
+): Promise<CardClient | null> =>
+  (await db.queryObject<CardClient>(
+    "select card_id, client_id, unlocked_at, first_use, last_use from card_client where card_id=$1 and client_id=$2",
+    [card_id, client_id],
+  )).rows[0] || null;

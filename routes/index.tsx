@@ -2,14 +2,7 @@ import { HandlerContext, PageProps } from "$fresh/server.ts";
 import { Page } from "../components/Page.tsx";
 import { HCard } from "../components/HCard.tsx";
 import { Star } from "../components/Star.tsx";
-import {
-  Card,
-  CardGet,
-  CardList,
-  CardUse,
-  ClientCreate,
-  ClientGet,
-} from "../database.ts";
+import { Card, CardList, ClientGet } from "../database.ts";
 import { getCookies } from "std/http/cookie.ts";
 
 export const handler = async (
