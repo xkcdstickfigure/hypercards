@@ -35,6 +35,7 @@ export const handler = async (
     // set cookie
     const cookie = [`hctoken=${client.token}`];
     cookie.push(`Max-Age=${365 * 24 * 60 * 60}`);
+    cookie.push("Path=/");
     if (Deno.env.get("DENO_ENV") === "production") cookie.push("Secure");
 
     // generate url and redirect
