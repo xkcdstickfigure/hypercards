@@ -1,9 +1,9 @@
 import { Page } from "../components/Page.tsx";
-import { Card } from "../components/Card.tsx";
+import { HCard } from "../components/HCard.tsx";
 
 export default () => (
   <Page title="hypercards">
     <p class="text-center">share with a tap!</p>
-    <Card>HYPR</Card>
+    <HCard>HYPR</HCard>
   </Page>
 );

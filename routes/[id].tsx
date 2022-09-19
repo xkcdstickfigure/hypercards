@@ -1,12 +1,7 @@
 import { HandlerContext, PageProps } from "$fresh/server.ts";
 import { Page } from "../components/Page.tsx";
-import { Card } from "../components/Card.tsx";
+import { HCard } from "../components/HCard.tsx";
 import ActivateForm from "../islands/ActivateForm.tsx";
-
-interface Card {
-  id: string;
-  code: string;
-}
 
 export const handler = async (
   _req: Request,
@@ -27,7 +22,7 @@ export const handler = async (
 
 export default (props: PageProps) => (
   <Page title="Activate Hypercard">
-    <Card>1024</Card>
+    <HCard>1024</HCard>
     <ActivateForm />
   </Page>
 );
