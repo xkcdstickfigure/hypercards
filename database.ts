@@ -9,6 +9,7 @@ export interface Card {
   activated_at?: Date;
   platform?: string;
   value?: string;
+  phone?: string;
   pin?: string;
 }
 

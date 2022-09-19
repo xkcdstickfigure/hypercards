@@ -3,6 +3,7 @@ import { Page } from "../components/Page.tsx";
 import { HCard } from "../components/HCard.tsx";
 import ActivateForm from "../islands/ActivateForm.tsx";
 import { Card, CardGet } from "../database.ts";
+import { platforms } from "../platforms.ts";
 
 export const handler = async (
   _req: Request,
@@ -12,10 +13,11 @@ export const handler = async (
   if (!card) {
     return new Response(null, { status: 404 });
   } else if (card.activated_at) {
+    const url = platforms[card.platform || ""]?.url(card);
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "https://example.com",
+        Location: url || "/",
       },
     });
   } else {
