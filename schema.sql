@@ -6,6 +6,9 @@ create table card (
     value          text,
     phone          text,
     pin            text
+    partner        text,
+    owner          text,
+    price          int
 );
 
 create table client (
