@@ -49,6 +49,17 @@ export const CardActivate = async (
   );
 };
 
+export const CardUpdate = async (
+  id: string,
+  platform: string,
+  value: string | null,
+) => {
+  await db.queryObject(
+    "update card set platform=$2, value=$3 where id=$1",
+    [id, platform, value],
+  );
+};
+
 export const ClientGet = async (token: string): Promise<Client | null> =>
   (await db.queryObject<Client>(
     "select id, token, address, user_agent from client where token=$1",
