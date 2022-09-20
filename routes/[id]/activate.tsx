@@ -55,7 +55,8 @@ export const handler: Handlers = {
 
       // client
       const token = getCookies(req.headers).hctoken;
-      const address = (ctx.remoteAddr as Deno.NetAddr).hostname;
+      const address = req.headers.get("x-real-ip") ||
+        (ctx.remoteAddr as Deno.NetAddr).hostname;
       let client = await ClientGet(token);
       if (!client) {
         client = await ClientCreate(
