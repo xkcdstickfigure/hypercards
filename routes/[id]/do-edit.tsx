@@ -6,9 +6,9 @@ import {
   ClientGet,
 } from "../../database.ts";
 import { platforms } from "../../platforms.ts";
-import { getCookies } from "std/http/cookie.ts";
 
 interface Body {
+  token?: string;
   platform?: string;
   value?: string;
 }
@@ -21,6 +21,7 @@ export const handler: Handlers = {
     // parse body
     const body: Body = await req.json();
     if (
+      typeof body.token !== "string" ||
       typeof body.platform != "string" ||
       !Object.keys(platforms).includes(body.platform)
     ) return new Response(null, { status: 400 });
@@ -29,7 +30,9 @@ export const handler: Handlers = {
     let value: string | null = null;
     if (platforms[body.platform].value) {
       if (
-        typeof body.value !== "string" || !body.value || body.value.length > 256
+        typeof body.value !== "string" ||
+        !body.value ||
+        body.value.length > 256
       ) return new Response(null, { status: 400 });
       value = body.value;
     }
@@ -39,8 +42,7 @@ export const handler: Handlers = {
     if (!card) return new Response(null, { status: 400 });
 
     // client
-    const token = getCookies(req.headers).hctoken;
-    const client = await ClientGet(token);
+    const client = await ClientGet(body.token);
     if (!client) {
       return new Response(null, { status: 400 });
     }

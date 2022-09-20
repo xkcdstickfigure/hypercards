@@ -1,8 +1,8 @@
 import { HandlerContext } from "$fresh/server.ts";
 import { CardClientGet, CardGet, CardUse, ClientGet } from "../../database.ts";
-import { getCookies } from "std/http/cookie.ts";
 
 interface Body {
+  token?: string;
   pin?: string;
 }
 
@@ -12,7 +12,10 @@ export const handler = async (
 ): Promise<Response> => {
   // parse body
   const body: Body = await req.json();
-  if (typeof body.pin != "string") {
+  if (
+    typeof body.token !== "string" ||
+    typeof body.pin != "string"
+  ) {
     return new Response(null, { status: 400 });
   }
 
@@ -21,8 +24,7 @@ export const handler = async (
   if (!card) return new Response(null, { status: 400 });
 
   // client
-  const token = getCookies(req.headers).hctoken;
-  const client = await ClientGet(token);
+  const client = await ClientGet(body.token);
   if (!client) {
     return new Response(null, { status: 400 });
   }

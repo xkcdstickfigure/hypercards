@@ -1,6 +1,7 @@
 import { createRef, JSX } from "preact";
 import { useState } from "preact/hooks";
 import { platforms } from "../platforms.ts";
+import cookies from "js-cookie";
 
 export default (
   { id, phone }: { id: string; phone: string },
@@ -25,6 +26,7 @@ export default (
         "content-type": "application/json",
       },
       body: JSON.stringify({
+        token: cookies.get("hctoken"),
         platform,
         value,
       }),

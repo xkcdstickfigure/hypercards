@@ -3,6 +3,7 @@
     "crypto-random-string/": "https://deno.land/x/crypto_random_string@1.0.0/",
     "dotenv": "https://deno.land/x/dotenv@v3.2.0/load.ts",
     "$fresh/": "https://deno.land/x/fresh@1.1.1/",
+    "js-cookie": "https://esm.sh/js-cookie@3.0.1",
     "postgres/": "https://deno.land/x/postgres@v0.16.1/",
     "preact": "https://esm.sh/preact@10.11.0",
     "preact/": "https://esm.sh/preact@10.11.0/",

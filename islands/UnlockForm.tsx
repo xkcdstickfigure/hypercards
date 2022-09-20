@@ -1,4 +1,5 @@
 import { createRef, JSX } from "preact";
+import cookies from "js-cookie";
 
 export default ({ id }: JSX.HTMLAttributes) => {
   const pinRef = createRef();
@@ -13,7 +14,10 @@ export default ({ id }: JSX.HTMLAttributes) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ pin }),
+      body: JSON.stringify({
+        token: cookies.get("hctoken"),
+        pin,
+      }),
     }).then((res) => {
       if (res.status === 200) {
         location.href = `/${id}/edit`;
