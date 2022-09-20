@@ -72,7 +72,7 @@ export default (
           <input
             disabled
             value={`+${phone}`}
-            class="flex-grow px-2 text-gray-600"
+            class="flex-grow px-2 text-gray-600 bg-gray-200"
           />
         </div>
       </Field>

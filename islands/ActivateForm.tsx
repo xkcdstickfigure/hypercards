@@ -93,11 +93,12 @@ export default ({ id }: JSX.HTMLAttributes) => {
 
       <Field
         label="Pin (6 Digits)"
-        note="You'll need this to change what the card does"
+        note="Anyone who knows this can edit the card"
       >
         <input
           ref={pinRef}
           placeholder="••••••"
+          type="tel"
           maxLength={6}
           class="w-full h-12 border(2 gray-200) rounded-lg px-2 tracking-widest"
         />

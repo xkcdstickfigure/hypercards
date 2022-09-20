@@ -30,6 +30,7 @@ export default ({ id }: JSX.HTMLAttributes) => {
       <input
         ref={pinRef}
         placeholder="••••••"
+        type="tel"
         maxLength={6}
         class="w-full h-12 border(2 gray-200) rounded-lg px-2 tracking-widest"
       />
@@ -38,7 +39,7 @@ export default ({ id }: JSX.HTMLAttributes) => {
         class="w-full h-12 text-white rounded-lg"
         style="background-color: #6234ef"
       >
-        Activate
+        Continue
       </button>
     </form>
   );

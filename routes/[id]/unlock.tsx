@@ -32,7 +32,6 @@ export const handler = async (
 export default ({ data: card }: PageProps<Card>) => (
   <Page title="Unlock Hypercard">
     <p class="text-center">Enter the pin for {card.code}</p>
-
     <UnlockForm id={card.id} />
   </Page>
 );
