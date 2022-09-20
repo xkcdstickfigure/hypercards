@@ -24,8 +24,9 @@ export default () => (
 
     <p class="text-center">
       Go to{" "}
-      <a href="/" class="font-semibold" style="color: #6234ef">hypr.cards</a>
-      {" "}
+      <a href="/" class="font-semibold" style="color: #6234ef">
+        hypercards.net
+      </a>{" "}
       to edit your card
     </p>
   </Page>
